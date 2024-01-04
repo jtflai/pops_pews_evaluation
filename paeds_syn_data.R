@@ -1,4 +1,4 @@
-#nPEWS vs POPS
+#Creating synthetic paediatric vital sign data
 
 #load libraries
 library(MASS)
@@ -11,16 +11,10 @@ library(writexl)
 #synthpop package
 #tidysynth package
 
-
-# tasks:
-# create synthetic patient database 
-# create PEWS calculator
-# create POPS calculator
-
-# demographic variables 
+#-------------------------------------------
+# dataset specifications (based on POPS and nPEWS criteria): 
 # age: 0-1, 1-2, 2-4, 5-12, 13-16
 # gender 
-
 # temperature
 # sats
 # breathing / respiratory distress
@@ -28,7 +22,6 @@ library(writexl)
 # AVPU
 # gut feeling
 # other
-
 # pulse
 # blood pressure 
 # resp rate
