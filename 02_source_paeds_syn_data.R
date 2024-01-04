@@ -17,40 +17,48 @@
 #demographic details
 #create synthetic data
 #set number of patients
-n_patients <- 1000
+n_patients <- 2000
 id <- paste0("patient_", 1:n_patients)
 #assign gender randomly using binomial distribution,use if else statements to assign sex category
 set.seed(888)
-sex <- sample(x = c('male', 'female'), n_patients, replace = T)
+sex <- sample(x = c('Male', 'Female'), n_patients, replace = T)
 #generate ages with uniform distribution 
 set.seed(888)
-age <- round(runif(n_patients, 0, 16))
+age <- as.numeric(round(runif(n_patients, 0, 16)))
 
 #non age dependent variables
 sats <- round(rbeta(n_patients, shape1 = 97, shape2 = 5)*100,0)
 resp_distress <- sample(c("No distress", 
-                          "Audible grunt or wheeze", 
-                          "Mild or moderate recession", 
+                          "Audible grunt",
+                          "Audible wheeze", 
+                          "Mild recession",
+                          "Moderate recession", 
                           "Stridor", 
                           "Severe recession"),
                         n_patients,
                         replace = TRUE)
-avpu <- sample(c("alert", "voice", "pain"),
+avpu <- sample(c("Alert", "Voice", "Pain"),
                n_patients,
                replace = TRUE)
-gestalt <- sample(c("well", "low level concern", "child looks unwell"),
+gestalt <- sample(c("Well", "Low level concern", "Child looks unwell", "High level concern"),
                   n_patients,
                   replace = TRUE)
-other <- sample(c("well", "significant PMH", "Oncology patient", "Congenital heart disease"),
+other <- sample(c("Well", "Significant PMH", "Oncology patient", "Congenital heart disease"),
                 n_patients,
                 replace = TRUE)
-resp_support_base <- round(rbeta(n_patients, shape1 = 21, shape2 = 70)*100,0)
+#resp_support_base <- round(rbeta(n_patients, shape1 = 21, shape2 = 70)*100,0)
 #resp_support <- resp_support_base %>%
 #  mutate(resp_distress_binary = ifelse())
 
 #merge into single synthetic data set
 syn_paeds_data <- as.data.frame(cbind(id, age, sex, 
-                                      sats, resp_distress, avpu, gestalt, other))
+                                      sats, resp_distress, avpu, gestalt, other))%>%
+  mutate(age = as.numeric(age),
+         sex = as.factor(sex),
+         resp_distress = as.factor(resp_distress),
+         avpu = as.factor(avpu),
+         gestalt = as.factor(gestalt),
+         other = as.factor(other))
 
 #age dependent variables
 syn_paeds_data <- syn_paeds_data %>%
