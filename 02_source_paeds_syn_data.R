@@ -30,9 +30,9 @@ age <- round(runif(n_patients, 0, 16))
 sats <- round(rbeta(n_patients, shape1 = 97, shape2 = 5)*100,0)
 resp_distress <- sample(c("No distress", 
                           "Audible grunt or wheeze", 
-                          "mild or moderate recession", 
-                          "stridor", 
-                          "severe recession"),
+                          "Mild or moderate recession", 
+                          "Stridor", 
+                          "Severe recession"),
                         n_patients,
                         replace = TRUE)
 avpu <- sample(c("alert", "voice", "pain"),
@@ -45,8 +45,8 @@ other <- sample(c("well", "significant PMH", "Oncology patient", "Congenital hea
                 n_patients,
                 replace = TRUE)
 resp_support_base <- round(rbeta(n_patients, shape1 = 21, shape2 = 70)*100,0)
-resp_support <- resp_support_base %>%
-  mutate(resp_distress_binary = ifelse())
+#resp_support <- resp_support_base %>%
+#  mutate(resp_distress_binary = ifelse())
 
 #merge into single synthetic data set
 syn_paeds_data <- as.data.frame(cbind(id, age, sex, 
