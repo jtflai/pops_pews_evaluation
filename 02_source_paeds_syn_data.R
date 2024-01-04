@@ -1,17 +1,5 @@
 #Creating synthetic paediatric vital sign data
 
-#load libraries
-library(MASS)
-library(dplyr)
-library(tidyverse)
-library(NormalTrunk)
-library(writexl)
-
-#R packages that require existing dataset:
-#synthpop package
-#tidysynth package
-
-#-------------------------------------------
 # dataset specifications (based on POPS and nPEWS criteria): 
 # age: 0-1, 1-2, 2-4, 5-12, 13-16
 # gender 
@@ -34,7 +22,7 @@ id <- paste0("patient_", 1:n_patients)
 #assign gender randomly using binomial distribution,use if else statements to assign sex category
 set.seed(888)
 sex <- sample(x = c('male', 'female'), n_patients, replace = T)
-#generate age with uniform distribution 
+#generate ages with uniform distribution 
 set.seed(888)
 age <- round(runif(n_patients, 0, 16))
 
@@ -80,6 +68,6 @@ syn_paeds_data <- syn_paeds_data %>%
                                  age >=1 | age <= 2 ~ round(rnorm(n_patients, mean = 37, sd = 1),1),
                                  age >=2 ~ round(rnorm(n_patients, mean = 37, sd = 1),1)))
 
-test <- round(rbeta(n_patients, shape1 = 21, shape2 = 70)*100,0)
-hist(test, breaks = 50, xlim = c(0, 100))
+#test <- round(rbeta(n_patients, shape1 = 21, shape2 = 70)*100,0)
+#hist(test, breaks = 50, xlim = c(0, 100))
 
