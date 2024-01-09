@@ -4,7 +4,7 @@
 library(MASS)
 library(dplyr)
 library(tidyverse)
-library(writexl)
+#library(writexl)
 
 #snthetic data R packages but require existing dataset:
 #synthpop package
